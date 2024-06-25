@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" width="21.07" height="34.84" viewBox="0 0 21.07 34.84">
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <rect x="3.95" y="4.42" width="13.1" height="26.07" transform="translate(.36 -.21) rotate(1.18)" fill="#f54413" stroke-width="0"/>
+      <path d="M4.01,4.02L1.8,1.13C1.44.66,1.79-.02,2.38,0l18.01.53c.65.02.93.84.42,1.25l-3.29,2.62c-.13.1-.29.16-.45.15l-12.5-.26c-.21,0-.41-.11-.54-.28Z" fill="#ff6314" stroke-width="0"/>
+      <path d="M17.06,30.83l2.21,2.89c.36.47.01,1.15-.58,1.13l-18.01-.53c-.65-.02-.93-.84-.42-1.25l3.29-2.62c.13-.1.29-.16.45-.15l12.5.26c.21,0,.41.11.54.28Z" fill="#ff6314" stroke-width="0"/>
+      <rect x="5.99" y="8.48" width="9.02" height="17.95" transform="translate(.36 -.21) rotate(1.18)" fill="#ff653b" stroke-width="0"/>
+      <line x1="5.87" y1="28.8" x2="14.7" y2="29.02" fill="none" stroke="#ff653b" stroke-linecap="round" stroke-miterlimit="10"/>
+      <line x1="6.31" y1="6" x2="15.15" y2="6.22" fill="none" stroke="#ff653b" stroke-linecap="round" stroke-miterlimit="10"/>
+    </g>
+  </g>
+</svg>
