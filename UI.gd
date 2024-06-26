@@ -35,15 +35,16 @@ func _ready():
 
 func _on_save_button_pressed():
 	save_game()
-
+	
 func save_game():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	if file:
 		var save_data = {
-			"tokens": tokens
+			"tokens": 10
 		}
 		file.store_var(save_data)
 		file.close()
+		print(save_data)
 		print("Game saved!")
 	else:
 		print("Failed to open save file!")
@@ -54,6 +55,7 @@ func load_game():
 		var save_data = file.get_var()
 		if "tokens" in save_data:
 			tokens = save_data["tokens"]
+			update_token_label()
 			print("Game loaded! Tokens: %d" % tokens)
 		file.close()
 	else:
