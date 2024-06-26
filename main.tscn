@@ -93,6 +93,13 @@ offset_right = 417.0
 offset_bottom = 39.0
 text = "Informatie"
 
+[node name="save_button" type="Button" parent="."]
+offset_left = 1056.0
+offset_top = 11.0
+offset_right = 1138.0
+offset_bottom = 52.0
+text = "Save"
+
 [connection signal="pressed" from="add_token_button" to="." method="_on_add_token_button_pressed"]
 [connection signal="mouse_entered" from="snack_button" to="." method="_on_snack_button_mouse_entered"]
 [connection signal="mouse_exited" from="snack_button" to="." method="_on_snack_button_mouse_exited"]
@@ -103,3 +110,4 @@ text = "Informatie"
 [connection signal="timeout" from="TimerLabel/PomodoroTimer" to="." method="_on_pomodoro_timer_timeout"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Resetbutton" to="." method="_on_resetbutton_pressed"]
+[connection signal="pressed" from="save_button" to="." method="_on_save_button_pressed"]

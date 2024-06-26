@@ -33,6 +33,9 @@ func _ready():
 
 # LADEN EN OPSLAAN ------------------------------
 
+func _on_save_button_pressed():
+	save_game()
+
 func save_game():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	if file:
@@ -127,3 +130,7 @@ func _on_snack_button_mouse_entered():
 func _on_snack_button_mouse_exited():
 	kosten_label.visible = false
 	informatie_label.visible = false
+
+
+
+
