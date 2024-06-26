@@ -1,6 +1,6 @@
 extends Node2D
 
-var tokens = 0
+var tokens
 
 var token_label
 var timer_label
@@ -18,18 +18,21 @@ var timer_active = false
 var save_path = "user://save_game.save"
 
 func _ready():
+	
+	load_game()
+	
 	token_label = get_node("TokenLabel")
 	timer_label = get_node("TimerLabel")
 	pomodoro_timer = timer_label.get_node("PomodoroTimer")
-	update_token_label()
 	update_timer_label()
+	update_token_label()
 	
 	kosten_label = get_node("kosten_label")
 	informatie_label = get_node("informatie_label")
 	kosten_label.visible = false
 	informatie_label.visible = false
 
-	load_game()
+	
 
 # LADEN EN OPSLAAN ------------------------------
 
@@ -69,7 +72,8 @@ func load_game():
 # OVERIGE FUNCTIES ---------------------------------------------------------------------
 
 func update_token_label():
-	token_label.text = "%d" % tokens
+	if token_label:
+		token_label.text = str(tokens)
 	save_game()
 
 func _on_add_token_button_pressed():
