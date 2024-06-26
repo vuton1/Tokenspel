@@ -15,6 +15,8 @@ var total_time = 25 * 60  # 25 minuten in seconden
 var remaining_time = total_time
 var timer_active = false
 
+var save_path = "user://save_game.save"
+
 func _ready():
 	token_label = get_node("TokenLabel")
 	timer_label = get_node("TimerLabel")
@@ -27,8 +29,38 @@ func _ready():
 	kosten_label.visible = false
 	informatie_label.visible = false
 
+	load_game()
+
+# LADEN EN OPSLAAN ------------------------------
+
+func save_game():
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	if file:
+		var save_data = {
+			"tokens": tokens
+		}
+		file.store_var(save_data)
+		file.close()
+		print("Game saved!")
+	else:
+		print("Failed to open save file!")
+
+func load_game():
+	var file = FileAccess.open(save_path, FileAccess.READ)
+	if file:
+		var save_data = file.get_var()
+		if "tokens" in save_data:
+			tokens = save_data["tokens"]
+			print("Game loaded! Tokens: %d" % tokens)
+		file.close()
+	else:
+		print("No save file found or failed to open!")
+
+# OVERIGE FUNCTIES ---------------------------------------------------------------------
+
 func update_token_label():
 	token_label.text = "%d" % tokens
+	save_game()
 
 func _on_add_token_button_pressed():
 	tokens += 10
@@ -54,8 +86,8 @@ func _on_start_button_pressed():
 		timer_active = true
 
 func _on_pomodoro_timer_timeout():
-	if remaining_time > 1498:
-		remaining_time -= 1499
+	if remaining_time > 0:
+		remaining_time -= 1
 		update_timer_label()
 	else:
 		timer_active = false
