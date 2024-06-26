@@ -40,23 +40,28 @@ func save_game():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	if file:
 		var save_data = {
-			"tokens": 10
+			"tokens": tokens
 		}
-		file.store_var(save_data)
+		var json_string = JSON.stringify(save_data)
+		file.store_string(json_string)
 		file.close()
-		print(save_data)
-		print("Game saved!")
+		print("Game saved at: ", save_path)
 	else:
 		print("Failed to open save file!")
 
 func load_game():
 	var file = FileAccess.open(save_path, FileAccess.READ)
 	if file:
-		var save_data = file.get_var()
-		if "tokens" in save_data:
-			tokens = save_data["tokens"]
-			update_token_label()
-			print("Game loaded! Tokens: %d" % tokens)
+		var save_text = file.get_as_text()
+		var json = JSON.new()
+		var json_result = json.parse(save_text)
+		if json_result == OK:
+			var save_data = json.get_data()
+			if save_data.has("tokens"):
+				tokens = save_data["tokens"]
+				print("Game loaded! Tokens: %d" % tokens)
+		else:
+			print("Failed to parse save file!")
 		file.close()
 	else:
 		print("No save file found or failed to open!")
