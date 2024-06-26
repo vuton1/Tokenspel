@@ -32,9 +32,7 @@ func _ready():
 	kosten_label.visible = false
 	informatie_label.visible = false
 
-	
-
-# LADEN EN OPSLAAN ------------------------------
+# LADEN EN OPSLAAN ------------------------------------------------------------------------
 
 func _on_save_button_pressed():
 	save_game()
@@ -69,12 +67,11 @@ func load_game():
 	else:
 		print("No save file found or failed to open!")
 
-# OVERIGE FUNCTIES ---------------------------------------------------------------------
+# TOKENS TOEVOEGEN EN UPDATEN------------------------------------------------------------
 
 func update_token_label():
 	if token_label:
 		token_label.text = str(tokens)
-	save_game()
 
 func _on_add_token_button_pressed():
 	tokens += 10
@@ -94,33 +91,7 @@ func _on_gamen_button_pressed():
 	else:
 		return
 
-func _on_start_button_pressed():
-	if not timer_active:
-		pomodoro_timer.start()
-		timer_active = true
-
-func _on_pomodoro_timer_timeout():
-	if remaining_time > 0:
-		remaining_time -= 1
-		update_timer_label()
-	else:
-		timer_active = false
-		OS.alert("Focus tijd is klaar!", "Melding")
-		tokens += 10
-		update_token_label()
-		pomodoro_timer.stop()
-	
-		
-func _on_resetbutton_pressed():
-	pomodoro_timer.stop()
-	remaining_time = total_time
-	timer_active = false
-	update_timer_label()
-		
-func update_timer_label():
-	var minutes = remaining_time / 60
-	var seconds = remaining_time % 60
-	timer_label.text = "%02d:%02d" % [minutes, seconds]
+# DISPLAY KOSTEN TOKENS ----------------------------------------------------------
 
 func _on_gamen_button_mouse_entered():
 	kosten_label.text = "30"
@@ -141,6 +112,38 @@ func _on_snack_button_mouse_entered():
 func _on_snack_button_mouse_exited():
 	kosten_label.visible = false
 	informatie_label.visible = false
+	
+# POMODORO TIMER------------------------------------------------------------------------------------
+
+func _on_start_button_pressed():
+	if not timer_active:
+		pomodoro_timer.start()
+		timer_active = true
+
+func _on_pomodoro_timer_timeout():
+	if remaining_time > 0:
+		remaining_time -= 1
+		update_timer_label()
+	else:
+		timer_active = false
+		OS.alert("Focus tijd is klaar!", "Melding")
+		tokens += 10
+		update_token_label()
+		_on_resetbutton_pressed()
+		pomodoro_timer.stop()
+		
+func _on_resetbutton_pressed():
+	pomodoro_timer.stop()
+	remaining_time = total_time
+	timer_active = false
+	update_timer_label()
+		
+func update_timer_label():
+	var minutes = remaining_time / 60
+	var seconds = remaining_time % 60
+	timer_label.text = "%02d:%02d" % [minutes, seconds]
+
+
 
 
 
